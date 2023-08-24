@@ -12,6 +12,14 @@
   ],
   "author": "EVALORE",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EVALORE/css-selectors.git"
+  },
+  "bugs": {
+    "url": "https://github.com/EVALORE/css-selectors/issues"
+  },
+  "homepage": "https://github.com/EVALORE/css-selectors#readme",
   "scripts": {
     "dev": "webpack serve --node-env development -c config/webpack.dev.js",
     "prod": "webpack --node-env production -c config/webpack.prod.js",
@@ -44,9 +52,12 @@
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.45.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.1.0",
     "eslint-config-prettier": "^8.8.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
     "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.2.3",
     "postcss": "^8.4.27",

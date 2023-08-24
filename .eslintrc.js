@@ -1,27 +1,38 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
-    es2021: true,
+    es2022: true,
+    node: true,
   },
-  root: true,
-  extends: ['airbnb-base', 'eslint:recommended', 'plugin:import/recommended'],
-  overrides: [
-    {
-      files: ['**/*.ts'],
-      extends: [
-        'airbnb-typescript/base',
-        'eslint:recommended',
-        'plugin:@typescript-eslint/recommended',
-        'plugin:import/recommended',
-      ],
-      plugins: ['@typescript-eslint', 'import'],
-      parser: '@typescript-eslint/parser',
-    },
+  plugins: ['prettier', 'import', '@typescript-eslint'],
+  extends: [
+    'plugin:prettier/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'airbnb-base',
+    'plugin:import/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
   ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.json',
     ecmaVersion: 'latest',
+    project: true,
+    tsconfigRootDir: './tsconfig.json',
     sourceType: 'module',
   },
-  ignorePatterns: ['public', 'node_modules', 'dist', '.eslintrc.js'],
+  settings: {
+    'import/resolver': {
+      typescript: true,
+      node: true,
+    },
+  },
+  rules: {
+    'import/extensions': 'off',
+    // 'import/no-unresolved': 'off',
+  },
+  ignorePatterns: ['*.js'],
 };
