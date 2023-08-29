@@ -14,7 +14,7 @@ function resolveTsconfigPathsToAlias({
     const key = item.replace('/*', '');
     const value = resolve(
       webpackConfigBasePath,
-      paths[item][0].replace('/*', '').replace('*', ''),
+      paths[item][0].replace('/*', '').replace('*', '').replace('./', '../'),
     );
 
     aliases[key] = value;
