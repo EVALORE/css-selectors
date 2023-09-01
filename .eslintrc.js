@@ -32,7 +32,6 @@ module.exports = {
   },
   rules: {
     'import/extensions': 'off',
-    // 'import/no-unresolved': 'off',
   },
   ignorePatterns: ['*.js'],
 };
