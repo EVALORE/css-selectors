@@ -1,9 +1,13 @@
-import generateMarkup from '@utils/markupGenerator';
-import levels from '@data/levels';
+import generateMarkup from '@src/app/utils/generateMarkup';
+import Observer from '@src/app/interfaces/observer';
 import BaseComponent from '../base-component';
 import Input from '../input/input';
 
 // import LineNumbers from '../line-numbers/line-numbers';
+
+interface Mediator {
+  notify(): void;
+}
 
 const helpDescription = `
     {<br>
@@ -16,28 +20,45 @@ const helpDescription = `
     */<br>
     `;
 
-class FileWindow extends BaseComponent {
-  help: BaseComponent;
+class FileWindow extends BaseComponent implements Observer {
+  help: BaseComponent | undefined;
 
-  inputValue: string;
+  input: Input | undefined;
 
-  input: Input;
+  editorFormat: 'HTML' | 'CSS';
 
-  constructor(EditorFormat: 'HTML' | 'CSS') {
+  expectedValue: string | undefined;
+
+  mediator: Mediator | undefined;
+
+  constructor(editorFormat: 'HTML' | 'CSS', mediator?: Mediator) {
     super('div', ['file-window']);
+    this.editorFormat = editorFormat;
+    this.mediator = mediator;
 
-    this.help = new BaseComponent('div', ['help']);
-    this.help.setInnerHTML(helpDescription);
-    this.input = new Input();
-    this.inputValue = this.input.getValue();
-
-    if (EditorFormat === 'CSS') {
+    if (editorFormat === 'CSS') {
+      this.input = new Input();
+      this.input.subscribe(this);
+      this.input.addListener('input', () => {
+        this.input!.notify();
+      });
+      this.help = new BaseComponent('div', ['help']);
+      this.help.setInnerHTML(helpDescription);
       this.insertChildren(this.input, this.help);
     }
+  }
 
-    if (EditorFormat === 'HTML') {
-      this.setInnerHTML(generateMarkup(levels[1]!.boardMarkup));
+  initLevel(content: string) {
+    if (this.editorFormat === 'HTML') {
+      this.setInnerHTML(generateMarkup(content));
     }
+    if (this.editorFormat === 'CSS') {
+      this.expectedValue = content;
+    }
+  }
+
+  update(value: string) {
+    if (value === this.expectedValue) this.mediator?.notify();
   }
 }
 

@@ -4,4 +4,9 @@
   &.open {
     display: none;
   }
+
+  & * {
+    padding-block: 2px;
+    border: 1px solid #000;
+  }
 }

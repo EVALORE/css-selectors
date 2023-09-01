@@ -16,11 +16,11 @@ const levels = [
     `,
   },
   {
+    helpTitle: 'Select elements by their type',
+    selectorName: 'Type Selector',
     doThis: 'Select the bento boxes',
     selector: 'bento',
     syntax: 'A',
-    helpTitle: 'Select elements by their type',
-    selectorName: 'Type Selector',
     help: 'Selects all elements of type <strong>A</strong>. Type refers to the type of tag, so <tag>div</tag>, <tag>p</tag> and <tag>ul</tag> are all different element types.',
     examples: [
       '<strong>div</strong> selects all <tag>div</tag> elements.',
@@ -69,9 +69,9 @@ const levels = [
     `,
   },
   {
+    helpTitle: 'Combine the Descendant & ID Selectors',
     doThis: 'Select the pickle on the fancy plate',
     selector: '#fancy pickle',
-    helpTitle: 'Combine the Descendant & ID Selectors',
     syntax: '#id&nbsp;&nbsp;A',
     help: 'You can combine any selector with the descendent selector.',
     examples: [
